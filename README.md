@@ -1,4 +1,4 @@
-# 🖼️ Image to PDF Converter
+# PixePDF
 
 A stylish, browser-based tool that converts images to PDF files with customizable options and a pixel art interface.
 
