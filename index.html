@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to PDF Converter</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="pixel-bg">
+    <div class="pixel-container">
+        <h1 class="pixel-title">Image to PDF Converter</h1>
+        <p class="pixel-text">Convert your images to PDF without losing quality</p>
+        
+        <div class="pixel-card-container">
+            <div class="pixel-card">
+                <h3 class="pixel-subtitle">PDF Settings</h3>
+                <div class="settings-row">
+                    <div class="settings-item">
+                        <label for="pageSize" class="pixel-label">Page Size:</label>
+                        <select id="pageSize" class="pixel-select">
+                            <option value="a4">A4</option>
+                            <option value="letter">Letter</option>
+                            <option value="legal">Legal</option>
+                            <option value="custom">Custom</option>
+                        </select>
+                    </div>
+                    <div class="settings-item">
+                        <label for="orientation" class="pixel-label">Orientation:</label>
+                        <select id="orientation" class="pixel-select">
+                            <option value="portrait">Portrait</option>
+                            <option value="landscape">Landscape</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="settings-row" id="customSizeRow" style="display: none;">
+                    <div class="settings-item">
+                        <label for="customWidth" class="pixel-label">Width (mm):</label>
+                        <input type="number" id="customWidth" value="210" class="pixel-input">
+                    </div>
+                    <div class="settings-item">
+                        <label for="customHeight" class="pixel-label">Height (mm):</label>
+                        <input type="number" id="customHeight" value="297" class="pixel-input">
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <div class="settings-item">
+                        <label for="imageQuality" class="pixel-label">Image Quality:</label>
+                        <div class="flex items-center gap-2">
+                            <input type="range" id="imageQuality" min="0.7" max="1.0" step="0.05" value="1.0" class="pixel-range">
+                            <span id="qualityValue" class="pixel-value">1.0</span>
+                        </div>
+                    </div>
+                    <div class="settings-item">
+                        <label for="fitOption" class="pixel-label">Image Fit:</label>
+                        <select id="fitOption" class="pixel-select">
+                            <option value="contain">Contain (preserve aspect ratio)</option>
+                            <option value="cover">Cover (fill page)</option>
+                            <option value="original">Original Size</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pixel-upload-container">
+                <label for="imageUpload" class="pixel-upload-btn">
+                    Choose Images
+                    <input type="file" id="imageUpload" accept="image/*" multiple class="hidden">
+                </label>
+            </div>
+            
+            <div class="sorting-controls">
+                <button id="sortByUpload" class="pixel-btn">Sort by Upload</button>
+                <button id="sortByName" class="pixel-btn">Sort by Name</button>
+            </div>
+            
+            <div class="image-preview" id="imagePreview">
+                <!-- Images will be displayed here -->
+                <div class="text-center w-full text-sm opacity-50" id="dropHint">
+                    Drag and drop images here or use the Choose Images button
+                </div>
+            </div>
+            
+            <button id="generatePDF" class="pixel-btn pixel-btn-primary" disabled>Generate PDF</button>
+            <div class="progress" id="progressContainer">
+                <div class="pixel-progress-container">
+                    <progress id="progressBar" value="0" max="100" class="pixel-progress"></progress>
+                </div>
+                <span id="progressText" class="pixel-text">Processing...</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+
